@@ -53,6 +53,24 @@ sytax ar --start 800000 --stop 1200000 --step 50000 --compensations-rate 0.1 --w
 - `src/syriantaxescli/schemas.py`: Data models for salary and tax results.
 - `src/syriantaxescli/options.py`, `dependencies.py`, `constants.py`, `callbacks.py`: CLI options, validation, and configuration.
 
+## Environment Variables
+
+You can configure the CLI using the following environment variables:
+
+| Variable                              | Description                                                        |
+|---------------------------------------|--------------------------------------------------------------------|
+| `SYRIANTAXES_BRACKET_TAX_MINS`        | List of minimum values for each tax bracket.                       |
+| `SYRIANTAXES_BRACKET_TAX_MAXS`        | List of maximum values for each tax bracket.                       |
+| `SYRIANTAXES_BRACKET_TAX_RATES`       | List of tax rates for each bracket.                                |
+| `SYRIANTAXES_TAXES_ROUNDING_METHOD`   | Rounding method for taxes (see `syriantaxes.RoundingMethod`).      |
+| `SYRIANTAXES_TAXES_ROUND_TO_NEAREST`  | Value to which taxes are rounded (e.g., 100, 1).                   |
+| `SYRIANTAXES_MIN_ALLOWED_SALARY`      | Minimum allowed gross salary for tax calculation.                  |
+| `SYRIANTAXES_FIXED_TAX_RATE`          | Fixed tax rate to apply (if applicable).                           |
+| `SYRIANTAXES_SS_ROUNDING_METHOD`      | Rounding method for social security calculations.                  |
+| `SYRIANTAXES_SS_ROUND_TO_NEAREST`     | Value to which social security deductions are rounded.             |
+| `SYRIANTAXES_MIN_SS_ALLOWED_SALARY`   | Minimum allowed salary for social security calculations.           |
+| `SYRIANTAXES_SS_DEDUCTION_RATE`       | Social security deduction rate.                                    |
+
 ## Requirements
 
 - Python 3.12+
