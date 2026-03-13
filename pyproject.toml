@@ -1,0 +1,25 @@
+[project]
+name = "syriantaxescli"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [{ name = "aaltatan", email = "a.altatan@gmail.com" }]
+requires-python = ">=3.12"
+dependencies = [
+    "syriantaxes>=0.1.0",
+    "typer>=0.24.1",
+    "typer-di>=0.1.5",
+    "xlwings>=0.33.21",
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+    "Operating System :: OS Independent",
+]
+
+[project.scripts]
+sytax = "syriantaxescli.controllers:app"
+
+[build-system]
+requires = ["uv_build>=0.10.9,<0.11.0"]
+build-backend = "uv_build"
