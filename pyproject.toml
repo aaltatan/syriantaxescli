@@ -17,6 +17,10 @@ classifiers = [
     "Operating System :: OS Independent",
 ]
 
+[project.urls]
+"Homepage" = "https://github.com/aaltatan/syriantaxescli"
+"Issues" = "https://github.com/aaltatan/syriantaxescli/issues"
+
 [project.scripts]
 sytax = "syriantaxescli.controllers:app"
 
