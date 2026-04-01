@@ -5,7 +5,7 @@ from collections.abc import Callable
 from functools import wraps
 from pathlib import Path
 
-import xlwings as xw
+import openpyxl
 
 from .constants import HEADERS
 from .schemas import Salary
@@ -48,15 +48,19 @@ writer = WriterRegistry()
 
 @writer.register("xlsx")
 def write_to_excel(salaries: list[Salary], path: Path) -> None:
-    wb = xw.Book()
-    ws = wb.sheets.active
+    wb = openpyxl.Workbook()
+    ws = wb.active
+
+    if ws is None:
+        message = "Workbook is empty. Add a sheet to the workbook."
+        raise ValueError(message)
 
     filename = path.name.split(".")[0].title()
-    ws.name = filename
+    ws.title = filename
 
     headers_row = [header for header, _ in HEADERS.items()]
 
-    ws.range("A1").options(index=False).value = headers_row
+    ws.append(headers_row)
 
     rows = [
         [
@@ -75,20 +79,8 @@ def write_to_excel(salaries: list[Salary], path: Path) -> None:
         for idx, salary in enumerate(salaries, start=1)
     ]
 
-    ws.range(f"A2:A{len(rows) + 1}").options(index=False).value = rows
-
-    lr = ws.range("A1").end("down").row
-    lc = ws.range("A1").end("right").column
-
-    ws.range(f"B2:J{lr}").number_format = "0.00"
-
-    ws.range(f"K2:K{lr}").number_format = "0.00%"
-
-    ws.range(f"D2:D{lr}").font.bold = True
-    ws.range(f"J2:J{lr}").font.bold = True
-    ws.range("A1", (1, lc)).font.bold = True
-
-    ws.autofit()
+    for row in rows:
+        ws.append(row)
 
     wb.save(path)
 
