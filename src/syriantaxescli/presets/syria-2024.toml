@@ -1,0 +1,53 @@
+# Syrian salary tax rules. Every setting must be here: presets are the only defaults.
+# Config files, environment variables and options override any of these values.
+
+[tax]
+# Net targets below the minimum salary can't be calculated.
+min_salary = 837_000
+# Flat tax on compensations.
+compensation_tax_rate = 0.05
+
+[tax.rounding]
+method = "HALF_UP"
+step = 100
+
+# Each bracket runs from its lower bound to the next one's; the last has no top.
+[[tax.brackets]]
+lower = 0
+rate = 0
+
+[[tax.brackets]]
+lower = 837_000
+rate = 0.11
+
+[[tax.brackets]]
+lower = 850_000
+rate = 0.13
+
+[[tax.brackets]]
+lower = 1_100_000
+rate = 0.15
+
+[tax.social_security]
+enabled = false
+rate = 0.07
+min_salary = 750_000
+
+[tax.social_security.rounding]
+method = "HALF_UP"
+step = 1
+
+[net]
+# Share of a net target paid as compensation when -r is not given.
+compensation_share = 0
+
+[output]
+format = "table"
+json_indent = 4
+
+[range]
+# The most rows a range may have, and the defaults for STOP (START x stop_factor)
+# and STEP (START / step_divisor).
+max_size = 1000
+stop_factor = 10
+step_divisor = 10

@@ -1,15 +1,18 @@
 [project]
 name = "syriantaxescli"
-version = "0.1.2"
-description = "Add your description here"
+version = "0.2.0"
+description = "A command-line tool for calculating Syrian salary and compensation taxes."
 readme = "README.md"
 authors = [{ name = "aaltatan", email = "a.altatan@gmail.com" }]
 requires-python = ">=3.12"
 dependencies = [
     "openpyxl>=3.1.5",
-    "syriantaxes>=0.1.1",
-    "typer>=0.24.1",
+    "pydantic>=2.14.1",
+    "python-dotenv>=1.2.2",
+    "syriantaxes>=1.0.0,<2",
+    "typer>=0.26.8",
     "typer-di>=0.1.5",
+    "typer-swissknife>=0.1.1",
 ]
 classifiers = [
     "Programming Language :: Python :: 3",
@@ -22,8 +25,79 @@ classifiers = [
 "Issues" = "https://github.com/aaltatan/syriantaxescli/issues"
 
 [project.scripts]
-sytax = "syriantaxescli.controllers:app"
+sytax = "syriantaxescli.main:main"
 
 [build-system]
-requires = ["uv_build>=0.10.9,<0.11.0"]
+requires = ["uv_build>=0.10.9,<0.14.0"]
 build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "mypy>=2.4.0",
+    "pytest>=9.1.1",
+    "pytest-cov>=7.1.0",
+    "ruff>=0.17.1",
+    "types-openpyxl>=3.1.5",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+addopts = [
+    "--import-mode=importlib",
+    "--cov=syriantaxescli",
+    "--cov-branch",
+    "--cov-report=term-missing",
+]
+
+[tool.coverage.report]
+fail_under = 100
+show_missing = true
+# The default, plus the `__main__` guard, whose false branch never runs.
+partial_branches = ["pragma: no branch", "if __name__ == .__main__.:"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["ALL"]
+ignore = [
+    "COM812", # conflicts with the formatter
+    "CPY",    # no copyright headers
+    "D100",   # docstrings are optional for modules, classes and functions
+    "D101",
+    "D102",
+    "D103",
+    "D104",
+    "D105",
+    "D107",
+    "D203",   # conflicts with D211
+    "D213",   # conflicts with D212
+    "FBT001",  # typer flags are boolean positional parameters
+    "FBT002",
+    "PLR0917", # typer commands take their options as parameters
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = [
+    "INP001",  # tests are not a package
+    "PLR0913", # pytest fixtures arrive as arguments
+    "PLR2004", # literal expected values are the point of a test
+    "S101",    # assert is how pytest works
+]
+
+[tool.ruff.format]
+docstring-code-format = true
+
+[tool.mypy]
+strict = true
+python_version = "3.12"
+files = ["src", "tests"]
+mypy_path = "src"
+explicit_package_bases = true
+
+[[tool.mypy.overrides]]
+# These packages ship type hints but no py.typed marker yet.
+module = ["syriantaxes", "syriantaxes.*", "typer_swissknife", "typer_swissknife.*"]
+follow_untyped_imports = true
