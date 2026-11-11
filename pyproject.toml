@@ -1,16 +1,16 @@
 [project]
 name = "syriantaxescli"
-version = "0.2.0"
+version = "0.2.1"
 description = "A command-line tool for calculating Syrian salary and compensation taxes."
 readme = "README.md"
 authors = [{ name = "aaltatan", email = "a.altatan@gmail.com" }]
 requires-python = ">=3.12"
 dependencies = [
     "openpyxl>=3.1.5",
-    "pydantic>=2.14.1",
-    "python-dotenv>=1.2.2",
+    "pydantic>=2.14.3",
+    "python-dotenv>=1.2.4",
     "syriantaxes>=1.0.0,<2",
-    "typer>=0.26.8",
+    "typer>=0.29.0",
     "typer-di>=0.1.5",
     "typer-swissknife>=0.1.1",
 ]
@@ -28,16 +28,16 @@ classifiers = [
 sytax = "syriantaxescli.main:main"
 
 [build-system]
-requires = ["uv_build>=0.10.9,<0.14.0"]
+requires = ["uv_build>=0.13.5,<0.14.0"]
 build-backend = "uv_build"
 
 [dependency-groups]
 dev = [
-    "mypy>=2.4.0",
-    "pytest>=9.1.1",
+    "mypy>=2.4.1",
+    "pytest>=9.2.0",
     "pytest-cov>=7.1.0",
-    "ruff>=0.17.1",
-    "types-openpyxl>=3.1.5",
+    "ruff>=0.17.4",
+    "types-openpyxl>=3.1.5.20261017",
 ]
 
 [tool.pytest.ini_options]
