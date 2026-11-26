@@ -1,0 +1,18 @@
+# A draft law to compare with the current one: a higher minimum salary
+# and new brackets. Brackets are replaced as a whole list.
+preset = "syria-2024"
+
+[tax]
+min_salary = 1_000_000
+
+[[tax.brackets]]
+lower = 0
+rate = 0
+
+[[tax.brackets]]
+lower = 1_000_000
+rate = 0.10
+
+[[tax.brackets]]
+lower = 2_000_000
+rate = 0.15

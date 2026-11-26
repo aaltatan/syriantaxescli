@@ -1,0 +1,5 @@
+# Payroll for insured employees: social security is deducted before tax.
+preset = "syria-2024"
+
+[tax.social_security]
+enabled = true

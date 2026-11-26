@@ -1,0 +1,9 @@
+# A company's payroll settings: only what differs from the preset.
+preset = "syria-2024"
+
+[net]
+# net and range pay a quarter of the net as compensations unless -r says otherwise
+compensation_share = 0.25
+
+[output]
+json_indent = 2

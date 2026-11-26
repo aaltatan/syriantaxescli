@@ -1,0 +1,6 @@
+/* Terminal tables use box-drawing characters, which Roboto Mono lacks: put fonts that
+   have them first, and keep lines close so the borders join. */
+.md-typeset pre > code {
+  font-family: "Cascadia Mono", Consolas, "DejaVu Sans Mono", Menlo, "Roboto Mono", monospace;
+  line-height: 1.3;
+}

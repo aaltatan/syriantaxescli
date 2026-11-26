@@ -22,6 +22,7 @@ classifiers = [
 
 [project.urls]
 "Homepage" = "https://github.com/aaltatan/syriantaxescli"
+"Documentation" = "https://aaltatan.github.io/syriantaxescli/"
 "Issues" = "https://github.com/aaltatan/syriantaxescli/issues"
 
 [project.scripts]
@@ -38,6 +39,9 @@ dev = [
     "pytest-cov>=7.1.0",
     "ruff>=0.17.4",
     "types-openpyxl>=3.1.5.20261017",
+]
+docs = [
+    "mkdocs-material>=9.8.2",
 ]
 
 [tool.pytest.ini_options]

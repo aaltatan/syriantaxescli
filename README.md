@@ -3,6 +3,9 @@
 A command-line tool for calculating Syrian salary and compensation taxes, built with
 [Typer](https://typer.tiangolo.com/) on top of the [syriantaxes](https://pypi.org/project/syriantaxes/) library.
 
+**Documentation: [aaltatan.github.io/syriantaxescli](https://aaltatan.github.io/syriantaxescli/)**:
+a step-by-step guide, real-world recipes and the full reference.
+
 ## Features
 
 - **Gross to net:** the taxes, social security and net of a gross salary and compensations.
